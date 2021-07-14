@@ -17,10 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.fragment.app.FragmentActivity;
 
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -38,7 +36,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
-    private EditText caption;
+    private EditText mCaption; //mCaption
     private Button takePicture;
     private ImageView image;
     private Button submit;
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        caption = findViewById(R.id.caption);
+        mCaption = findViewById(R.id.caption);
         takePicture = findViewById(R.id.takePic);
         image = findViewById(R.id.image);
         submit = findViewById(R.id.submit);
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String description =caption.getText().toString();
+                String description = mCaption.getText().toString();
                 if(description.isEmpty()){
                     Toast.makeText(MainActivity.this, "enter a caption ", Toast.LENGTH_SHORT).show();
                     return;
@@ -163,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "ERORR!!! " + e, Toast.LENGTH_SHORT).show();
                 }
                 Log.i(TAG, "save was successful");
-                caption.setText("");
+                mCaption.setText("");
                 image.setImageResource(0);
             }
         });
